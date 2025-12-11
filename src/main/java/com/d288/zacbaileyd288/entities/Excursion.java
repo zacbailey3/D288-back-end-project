@@ -1,11 +1,10 @@
-package com.d288.zacbaileyd288.Entities;
+package com.d288.zacbaileyd288.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.aspectj.weaver.patterns.TypePatternQuestions;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -51,5 +50,8 @@ public class Excursion {
 
     @Column(name = "image_url", nullable = false)
     private String image_URL;
+
+    @ManyToMany(mappedBy = "excursions")
+    private Set<CartItem> cartItem;
 
 }

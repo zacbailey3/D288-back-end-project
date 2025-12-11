@@ -1,4 +1,4 @@
-package com.d288.zacbaileyd288.Entities;
+package com.d288.zacbaileyd288.entities;
 
 
 import jakarta.persistence.*;
@@ -50,8 +50,8 @@ public class Customer {
     @JoinColumn(name = "division_id", nullable = false)
     private Division division;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
-    private Set<CartItem> cartItems = new HashSet<>();
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Cart> carts;
 
 
 

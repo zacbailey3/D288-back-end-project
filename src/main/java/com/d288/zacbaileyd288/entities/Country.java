@@ -1,4 +1,4 @@
-package com.d288.zacbaileyd288.Entities;
+package com.d288.zacbaileyd288.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -33,7 +33,7 @@ public class Country {
     @Column(name = "last_update", nullable = false)
     private Date update_date;
 
-    @OneToMany(mappedBy = "country")
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Division> divisions = new HashSet<>();
 
 

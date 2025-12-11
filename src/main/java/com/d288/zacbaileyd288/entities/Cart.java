@@ -1,7 +1,6 @@
-package com.d288.zacbaileyd288.Entities;
+package com.d288.zacbaileyd288.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +12,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
 @Table(name = "carts")
 @Getter
 @Setter
@@ -52,9 +50,11 @@ public class Cart {
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart")
-    private Set<CartItem> cartItems = new HashSet<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart", fetch = FetchType.LAZY)
+    private Set<CartItem> cartItem = new HashSet<>();
 
-
+    public void add(CartItem cartItem) {
+        this.cartItem.add(cartItem);
+    }
 
 }

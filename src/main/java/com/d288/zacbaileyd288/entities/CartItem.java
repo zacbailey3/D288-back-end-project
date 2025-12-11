@@ -1,4 +1,4 @@
-package com.d288.zacbaileyd288.Entities;
+package com.d288.zacbaileyd288.entities;
 
 import jakarta.persistence.*;
 
@@ -20,7 +20,7 @@ public class CartItem {
 
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-@Column(name = "cart_id", nullable = false)
+@Column(name = "cart_item_id", nullable = false)
 private Long id;
 
 @ManyToOne
