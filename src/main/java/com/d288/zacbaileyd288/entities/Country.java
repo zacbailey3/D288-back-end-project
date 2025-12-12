@@ -39,7 +39,7 @@ public class Country {
     @Column(name = "last_update")
     private Date update_date;
 
-    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "country", cascade = CascadeType.ALL)
     private Set<Division> divisions = new HashSet<>();
 
 

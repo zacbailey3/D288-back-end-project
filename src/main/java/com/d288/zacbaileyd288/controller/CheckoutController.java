@@ -1,24 +1,26 @@
-package com.d288.zacbaileyd288.controllers;
+package com.d288.zacbaileyd288.controller;
 
 import com.d288.zacbaileyd288.services.CheckoutService;
 import com.d288.zacbaileyd288.services.Purchase;
 import com.d288.zacbaileyd288.services.PurchaseResponse;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("http://localhost:4200")
 @RestController
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/api/checkout")
 public class CheckoutController {
 
-    private final CheckoutService checkoutService;
+    private CheckoutService checkoutService;
 
     public CheckoutController(CheckoutService checkoutService) {
         this.checkoutService = checkoutService;
     }
 
-    @PostMapping("/purchse")
+    @PostMapping("/purchase")
     public PurchaseResponse placeOrder(@RequestBody Purchase purchase) {
-        return checkoutService.placeOrder(purchase);
+        PurchaseResponse purchaseResponse = checkoutService.placeOrder(purchase);
+
+        return purchaseResponse;
     }
 
 

@@ -11,6 +11,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Table(name = "excursions")
@@ -37,7 +38,7 @@ public class Excursion {
     private String excursion_title;
 
     @ManyToMany(mappedBy = "excursions")
-    private Set<CartItem> cartItems;
+    private Set<CartItem> cartItems = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="vacation_id", nullable = false)

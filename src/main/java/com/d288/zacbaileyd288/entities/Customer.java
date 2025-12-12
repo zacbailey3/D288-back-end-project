@@ -56,7 +56,7 @@ public class Customer {
     @JoinColumn(name = "division_id")
     private Division division;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private Set<Cart> carts = new HashSet<>();
 
     public void add(Cart cart) {

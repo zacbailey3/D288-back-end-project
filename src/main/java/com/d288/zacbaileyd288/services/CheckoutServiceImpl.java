@@ -34,20 +34,34 @@ public class CheckoutServiceImpl implements CheckoutService {
     @Transactional
     public PurchaseResponse placeOrder(Purchase purchase) {
 
-
+        //FIX FOR non-populating tracking number
+        //setting to null to populate purchase response
         Cart cart = purchase.getCart();
+        if (cart.getId() != null && cart.getId() == 0) {
+            cart.setId(null);
+        }
 
         String orderTrackingNumber = generateOrderTrackingNumber();
-        cart.setOrderTrackingNumber(orderTrackingNumber);
 
         Set<CartItem> cartItems = purchase.getCartItems();
-        cartItems.forEach(item -> item.setCart(cart));
-        cartItems.forEach(item -> cart.add(item));
+
+        cart.setOrderTrackingNumber(orderTrackingNumber);
+
+        cartItems.forEach(item -> {
+            item.setCart(cart);
+            cart.add(item);
+        });
 
         cart.setStatus(StatusType.ordered);
-        cartRepository.save(cart);
 
         Customer customer = purchase.getCustomer();
+
+        //FIX FOR non-populating tracking number
+        //setting to null to populate purchase response
+        if (customer.getId() != null && customer.getId() == 0) {
+            customer.setId(null);
+        }
+
         customer.add(cart);
 
         customerRepository.save(customer);
