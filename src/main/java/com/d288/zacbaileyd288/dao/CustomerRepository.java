@@ -8,4 +8,5 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @RepositoryRestResource(collectionResourceRel = "customers", path = "customers")
 @CrossOrigin("http://localhost:4200")
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
+    boolean existsByFirstNameAndLastName(String firstName, String lastName);
 }

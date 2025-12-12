@@ -59,6 +59,18 @@ public class Customer {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private Set<Cart> carts = new HashSet<>();
 
+    //constructor for bootstrap
+    public Customer(String firstName, String lastName, String address, String postal_code, String phone, Division division) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.postal_code = postal_code;
+        this.phone = phone;
+        this.division = division;
+        this.create_date = new Date();
+        this.update_date = new Date();
+    }
+
     public void add(Cart cart) {
         if (cart != null) {
             if (carts == null) {
