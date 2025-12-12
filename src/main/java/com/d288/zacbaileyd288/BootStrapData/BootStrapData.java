@@ -4,13 +4,8 @@ import com.d288.zacbaileyd288.dao.CustomerRepository;
 import com.d288.zacbaileyd288.dao.DivisionRepository;
 import com.d288.zacbaileyd288.entities.Customer;
 import com.d288.zacbaileyd288.entities.Division;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class BootStrapData implements CommandLineRunner {
@@ -24,25 +19,42 @@ public class BootStrapData implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
 
-        // Define sample customers
-        List<Customer> sampleCustomers = new ArrayList<>();
+        // Only insert sample customers if DB is basically empty
+        long count = customerRepository.count();
 
-        sampleCustomers.add(new Customer("Zac", "Bailey", "487 West Street", "12345", "(123)555-8888", divisionRepository.findById(22L).orElse(null)));
-        sampleCustomers.add(new Customer("Kylie", "Copeland", "852 East Street", "67899", "(111)222-9878", divisionRepository.findById(33L).orElse(null)));
-        sampleCustomers.add(new Customer("Travis", "Hayes", "22 North Dr", "85214", "(457)874-5214", divisionRepository.findById(44L).orElse(null)));
-        sampleCustomers.add(new Customer("Rollo", "Shepherd", "33 South Ln", "22335", "(999)777-3256", divisionRepository.findById(55L).orElse(null)));
-        sampleCustomers.add(new Customer("Luna", "Shepherd", "777 Las Vegas Blvd", "87451", "(333)777-6666", divisionRepository.findById(66L).orElse(null)));
+        // If FE added John Smith: count = 1
+        // If DB empty: count = 0
+        // In BOTH cases: we want to insert our sample customers.
+        if (count <= 1) {
 
-        // Add only missing customers
-        for (Customer customer : sampleCustomers) {
-            boolean exists = customerRepository.existsByFirstNameAndLastName(customer.getFirstName(), customer.getLastName());
-            if (!exists) {
-                customerRepository.save(customer);
-            }
+            Customer c1 = new Customer("Zac", "Bailey", "487 West Street", "12345",
+                    "(123)555-8888", divisionRepository.findById(22L).orElse(null));
+
+            Customer c2 = new Customer("Kylie", "Copeland", "852 East Street", "67899",
+                    "(111)222-9878", divisionRepository.findById(33L).orElse(null));
+
+            Customer c3 = new Customer("Travis", "Hayes", "22 North Dr", "85214",
+                    "(457)874-5214", divisionRepository.findById(44L).orElse(null));
+
+            Customer c4 = new Customer("Rollo", "Shepherd", "33 South Ln", "22335",
+                    "(999)777-3256", divisionRepository.findById(55L).orElse(null));
+
+            Customer c5 = new Customer("Luna", "Shepherd", "777 Las Vegas Blvd", "87451",
+                    "(333)777-6666", divisionRepository.findById(66L).orElse(null));
+
+            customerRepository.save(c1);
+            customerRepository.save(c2);
+            customerRepository.save(c3);
+            customerRepository.save(c4);
+            customerRepository.save(c5);
+
+            System.out.println("Sample customers added.");
+        } else {
+            System.out.println("Customers already exist. Skipping bootstrap.");
         }
 
-        System.out.println("Bootstrapping completed. Total customers in DB: " + customerRepository.count());
+        System.out.println("Total customers: " + customerRepository.count());
     }
 }

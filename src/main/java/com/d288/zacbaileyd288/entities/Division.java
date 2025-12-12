@@ -42,7 +42,7 @@ public class Division {
 
 
     @ManyToOne
-    @JoinColumn(name = "country_id")
+    @JoinColumn(name = "country_id", nullable = false, insertable = false, updatable = false)
     private Country country;
 
     @JsonProperty("country_id")
@@ -55,5 +55,10 @@ public class Division {
     public void setCountry(Country country) {
         setCountry_id(country.getId());
         this.country = country;
+    }
+    //bug fix for adding customer
+    public Division(String url) {
+        String divisionId = url.substring(url.lastIndexOf("/") + 1);
+        this.id = Long.parseLong(divisionId);
     }
 }
