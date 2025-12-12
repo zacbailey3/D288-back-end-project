@@ -24,19 +24,19 @@ public class Country {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "country_id", nullable = false)
+    @Column(name = "country_id")
     private Long id;
 
     @JsonProperty("country_name")
-    @Column(name = "country", nullable = false)
+    @Column(name = "country")
     private String country_name;
 
     @CreationTimestamp
-    @Column(name = "create_date", nullable = false)
+    @Column(name = "create_date")
     private Date create_date;
 
     @UpdateTimestamp
-    @Column(name = "last_update", nullable = false)
+    @Column(name = "last_update")
     private Date update_date;
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

@@ -20,29 +20,29 @@ public class Vacation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "vacation_id", nullable = false)
+    @Column(name = "vacation_id")
     private Long id;
 
     @JsonProperty("vacation_title")
-    @Column(name = "vacation_title", nullable = false)
+    @Column(name = "vacation_title")
     private String vacation_title;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description")
     private String description;
 
     @JsonProperty("travel_price")
-    @Column(name = "travel_fare_price", nullable = false)
+    @Column(name = "travel_fare_price")
     private BigDecimal travel_price;
 
     @JsonProperty("image_URL")
-    @Column(name = "image_url", nullable = false)
+    @Column(name = "image_url")
     private String image_URL;
 
-    @Column(name = "create_date", nullable = false)
+    @Column(name = "create_date")
     @CreationTimestamp
     private Date create_date;
 
-    @Column(name = "last_update", nullable = false)
+    @Column(name = "last_update")
     @UpdateTimestamp
     private Date update_date;
 

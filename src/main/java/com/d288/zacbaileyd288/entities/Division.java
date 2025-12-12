@@ -24,19 +24,19 @@ public class Division {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "division_id", nullable = false)
+    @Column(name = "division_id")
     private Long id;
 
     @JsonProperty("division_name")
-    @Column(name = "division", nullable = false)
+    @Column(name = "division")
     private String division_name;
 
     @CreationTimestamp
-    @Column(name = "create_date", nullable = false)
+    @Column(name = "create_date")
     private Date create_date;
 
     @UpdateTimestamp
-    @Column(name = "last_update", nullable = false)
+    @Column(name = "last_update")
     private Date update_date;
 
 

@@ -21,21 +21,21 @@ public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_id", nullable = false)
+    @Column(name = "cart_id")
     private Long id;
 
-    @Column(name = "order_tracking_number", nullable = false)
+    @Column(name = "order_tracking_number")
     private String orderTrackingNumber;
 
     @JsonProperty("package_price")
-    @Column(name = "package_price", nullable = false)
+    @Column(name = "package_price")
     private BigDecimal package_price;
 
     @JsonProperty("party_size")
-    @Column(name = "party_size", nullable = false)
+    @Column(name = "party_size")
     private int party_size;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private StatusType status;
 
@@ -43,7 +43,7 @@ public class Cart {
     @CreationTimestamp
     private Date create_date;
 
-    @Column(name = "last_update", nullable = false)
+    @Column(name = "last_update")
     @UpdateTimestamp
     private Date last_update;
 

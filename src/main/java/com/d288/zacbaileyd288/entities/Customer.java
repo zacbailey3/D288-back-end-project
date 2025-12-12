@@ -44,16 +44,16 @@ public class Customer {
     @Column(name = "phone", nullable = false)
     private String phone;
 
-    @Column(name = "create_date", nullable = false)
+    @Column(name = "create_date")
     @CreationTimestamp
     private Date create_date;
 
-    @Column(name = "last_update", nullable = false)
+    @Column(name = "last_update")
     @UpdateTimestamp
     private Date update_date;
 
     @ManyToOne
-    @JoinColumn(name = "division_id", nullable = false)
+    @JoinColumn(name = "division_id")
     private Division division;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
