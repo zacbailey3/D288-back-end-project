@@ -1,0 +1,5 @@
+package com.d288.zacbaileyd288.services;
+
+public interface CheckoutService {
+    PurchaseResponse placeOrder(Purchase purchase);
+}

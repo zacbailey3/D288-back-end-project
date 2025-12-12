@@ -1,5 +1,6 @@
 package com.d288.zacbaileyd288.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,8 +17,6 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-
-
 public class Cart {
 
     @Id
@@ -28,9 +27,11 @@ public class Cart {
     @Column(name = "order_tracking_number", nullable = false)
     private String orderTrackingNumber;
 
+    @JsonProperty("package_price")
     @Column(name = "package_price", nullable = false)
     private BigDecimal package_price;
 
+    @JsonProperty("party_size")
     @Column(name = "party_size", nullable = false)
     private int party_size;
 
@@ -53,8 +54,13 @@ public class Cart {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cart", fetch = FetchType.LAZY)
     private Set<CartItem> cartItem = new HashSet<>();
 
-    public void add(CartItem cartItem) {
-        this.cartItem.add(cartItem);
+    public void add(CartItem item) {
+        if (item != null) {
+            if (cartItem == null) {
+                cartItem = new HashSet<>();
+            }
+            cartItem.add(item);
+            item.setCart(this);
+        }
     }
-
 }

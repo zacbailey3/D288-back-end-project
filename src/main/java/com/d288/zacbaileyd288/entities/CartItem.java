@@ -2,7 +2,9 @@ package com.d288.zacbaileyd288.entities;
 
 import jakarta.persistence.*;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -15,6 +17,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Table (name = "cart_items")
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class CartItem {
 

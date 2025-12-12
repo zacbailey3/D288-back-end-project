@@ -1,5 +1,6 @@
 package com.d288.zacbaileyd288.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,15 +23,18 @@ public class Vacation {
     @Column(name = "vacation_id", nullable = false)
     private Long id;
 
+    @JsonProperty("vacation_title")
     @Column(name = "vacation_title", nullable = false)
     private String vacation_title;
 
     @Column(name = "description", nullable = false)
     private String description;
 
+    @JsonProperty("travel_price")
     @Column(name = "travel_fare_price", nullable = false)
     private BigDecimal travel_price;
 
+    @JsonProperty("image_URL")
     @Column(name = "image_url", nullable = false)
     private String image_URL;
 

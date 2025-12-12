@@ -1,7 +1,10 @@
 package com.d288.zacbaileyd288.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -14,6 +17,8 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class Country {
 
@@ -22,6 +27,7 @@ public class Country {
     @Column(name = "country_id", nullable = false)
     private Long id;
 
+    @JsonProperty("country_name")
     @Column(name = "country", nullable = false)
     private String country_name;
 
